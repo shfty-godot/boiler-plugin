@@ -1,0 +1,144 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/boiler/src/example/test_manual.gen.gd" type="Script" id=1]
+[ext_resource path="res://addons/boiler/src/example/test_setters.gen.gd" type="Script" id=2]
+[ext_resource path="res://addons/boiler/src/example/test_script_auto.gen.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+tool
+
+# TestAuto Handlers
+func _on_TestAuto_bool_property_changed() -> void:
+	print(\"TestAuto bool change signal: \", $TestAuto.bool_property)
+
+func _on_TestAuto_int_property_changed() -> void:
+	print(\"TestAuto int change signal: \", $TestAuto.int_property)
+
+func _on_TestAuto_float_property_changed() -> void:
+	print(\"TestAuto float change signal: \", $TestAuto.float_property)
+
+func _on_TestAuto_string_property_changed() -> void:
+	print(\"TestAuto string change signal: \", $TestAuto.string_property)
+
+func _on_TestAuto_rect2_property_changed() -> void:
+	print(\"TestAuto rect2 change signal: \", $TestAuto.rect2_property)
+
+func _on_TestAuto_aabb_property_changed() -> void:
+	print(\"TestAuto AABB change signal: \", $TestAuto.aabb_property)
+
+func _on_TestAuto_basis_property_changed() -> void:
+	print(\"TestAuto basis change signal: \", $TestAuto.basis_property)
+
+func _on_TestAuto_color_property_changed() -> void:
+	print(\"TestAuto color change signal: \", $TestAuto.color_property)
+
+func _on_TestAuto_plane_property_changed() -> void:
+	print(\"TestAuto plane change signal: \", $TestAuto.plane_property)
+
+func _on_TestAuto_quat_property_changed() -> void:
+	print(\"TestAuto quat change signal: \", $TestAuto.quat_property)
+
+func _on_TestAuto_transform2d_property_changed() -> void:
+	print(\"TestAuto transform2d change signal: \", $TestAuto.transform2d_property)
+
+func _on_TestAuto_transform_property_changed() -> void:
+	print(\"TestAuto transform change signal: \", $TestAuto.transform_property)
+
+func _on_TestAuto_vector2_property_changed() -> void:
+	print(\"TestAuto vector2 change signal: \", $TestAuto.vector2_property)
+
+func _on_TestAuto_vector3_property_changed() -> void:
+	print(\"TestAuto vector3 change signal: \", $TestAuto.vector3_property)
+
+# TestManual Handlers
+func _on_TestManual_bool_property_changed() -> void:
+	print(\"TestManual bool change signal: \", $TestManual.bool_property)
+
+func _on_TestManual_int_property_changed() -> void:
+	print(\"TestManual int change signal: \", $TestManual.int_property)
+
+func _on_TestManual_float_property_changed() -> void:
+	print(\"TestManual float change signal: \", $TestManual.float_property)
+
+func _on_TestManual_string_property_changed() -> void:
+	print(\"TestManual string change signal: \", $TestManual.string_property)
+
+func _on_TestManual_rect2_property_changed() -> void:
+	print(\"TestManual rect2 change signal: \", $TestManual.rect2_property)
+
+func _on_TestManual_aabb_property_changed() -> void:
+	print(\"TestManual AABB change signal: \", $TestManual.aabb_property)
+
+func _on_TestManual_basis_property_changed() -> void:
+	print(\"TestManual basis change signal: \", $TestManual.basis_property)
+
+func _on_TestManual_color_property_changed() -> void:
+	print(\"TestManual color change signal: \", $TestManual.color_property)
+
+func _on_TestManual_plane_property_changed() -> void:
+	print(\"TestManual plane change signal: \", $TestManual.plane_property)
+
+func _on_TestManual_quat_property_changed() -> void:
+	print(\"TestManual quat change signal: \", $TestManual.quat_property)
+
+func _on_TestManual_transform2d_property_changed() -> void:
+	print(\"TestManual transform2d change signal: \", $TestManual.transform2d_property)
+
+func _on_TestManual_transform_property_changed() -> void:
+	print(\"TestManual transform change signal: \", $TestManual.transform_property)
+
+func _on_TestManual_vector2_property_changed() -> void:
+	print(\"TestManual vector2 change signal: \", $TestManual.vector2_property)
+
+func _on_TestManual_vector3_property_changed() -> void:
+	print(\"TestManual vector3 change signal: \", $TestManual.vector3_property)
+"
+
+[node name="Node" type="Node"]
+script = SubResource( 1 )
+
+[node name="TestSetters" type="Node" parent="."]
+script = ExtResource( 2 )
+int_property = 1
+transform2d_property = Transform2D( 0.525322, 0.850904, -0.850904, 0.525322, 1, 1 )
+quat_property = Quat( 0, 0.892131, 0, 0.451776 )
+
+[node name="TestAuto" type="Node" parent="."]
+script = ExtResource( 3 )
+transform2d_property = Transform2D( 0.525322, 0.850904, -0.850904, 0.525322, 1, 1 )
+quat_property = Quat( 0, 0.892131, 0, 0.451776 )
+
+[node name="TestManual" type="Node" parent="."]
+script = ExtResource( 1 )
+int_property = 1
+transform2d_property = Transform2D( 0.525322, 0.850904, -0.850904, 0.525322, 1, 1 )
+quat_property = Quat( 0, 0.892131, 0, 0.451776 )
+[connection signal="aabb_property_changed" from="TestAuto" to="." method="_on_TestAuto_aabb_property_changed"]
+[connection signal="basis_property_changed" from="TestAuto" to="." method="_on_TestAuto_basis_property_changed"]
+[connection signal="bool_property_changed" from="TestAuto" to="." method="_on_TestAuto_bool_property_changed"]
+[connection signal="color_property_changed" from="TestAuto" to="." method="_on_TestAuto_color_property_changed"]
+[connection signal="float_property_changed" from="TestAuto" to="." method="_on_TestAuto_float_property_changed"]
+[connection signal="int_property_changed" from="TestAuto" to="." method="_on_TestAuto_int_property_changed"]
+[connection signal="plane_property_changed" from="TestAuto" to="." method="_on_TestAuto_plane_property_changed"]
+[connection signal="quat_property_changed" from="TestAuto" to="." method="_on_TestAuto_quat_property_changed"]
+[connection signal="rect2_property_changed" from="TestAuto" to="." method="_on_TestAuto_rect2_property_changed"]
+[connection signal="string_property_changed" from="TestAuto" to="." method="_on_TestAuto_string_property_changed"]
+[connection signal="transform2d_property_changed" from="TestAuto" to="." method="_on_TestAuto_transform2d_property_changed"]
+[connection signal="transform_property_changed" from="TestAuto" to="." method="_on_TestAuto_transform_property_changed"]
+[connection signal="vector2_property_changed" from="TestAuto" to="." method="_on_TestAuto_vector2_property_changed"]
+[connection signal="vector3_property_changed" from="TestAuto" to="." method="_on_TestAuto_vector3_property_changed"]
+[connection signal="aabb_property_changed" from="TestManual" to="." method="_on_TestManual_aabb_property_changed"]
+[connection signal="basis_property_changed" from="TestManual" to="." method="_on_TestManual_basis_property_changed"]
+[connection signal="bool_property_changed" from="TestManual" to="." method="_on_TestManual_bool_property_changed"]
+[connection signal="color_property_changed" from="TestManual" to="." method="_on_TestManual_color_property_changed"]
+[connection signal="float_property_changed" from="TestManual" to="." method="_on_TestManual_float_property_changed"]
+[connection signal="int_property_changed" from="TestManual" to="." method="_on_TestManual_int_property_changed"]
+[connection signal="plane_property_changed" from="TestManual" to="." method="_on_TestManual_plane_property_changed"]
+[connection signal="quat_property_changed" from="TestManual" to="." method="_on_TestManual_quat_property_changed"]
+[connection signal="rect2_property_changed" from="TestManual" to="." method="_on_TestManual_rect2_property_changed"]
+[connection signal="string_property_changed" from="TestManual" to="." method="_on_TestManual_string_property_changed"]
+[connection signal="transform2d_property_changed" from="TestManual" to="." method="_on_TestManual_transform2d_property_changed"]
+[connection signal="transform_property_changed" from="TestManual" to="." method="_on_TestManual_transform_property_changed"]
+[connection signal="vector2_property_changed" from="TestManual" to="." method="_on_TestManual_vector2_property_changed"]
+[connection signal="vector3_property_changed" from="TestManual" to="." method="_on_TestManual_vector3_property_changed"]
